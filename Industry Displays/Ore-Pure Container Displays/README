@@ -1,0 +1,36 @@
+REQUIREMENTS:
+Pramming Board Controller (2)
+Detection Zone (1) -- I use a large one as the mats are the same for all.  Size of zone determines area for activation.
+Relay (1)
+Sign(xs) (8) -- Larger signs may work however I developed and tested the sign placements on xs signs.
+Containers (or Container Hubs) (8) -- One container or hub for each type of ore or pure metal.
+ 
+The following two LUA files provide the scripts needed to have screens display the percentage and amount (in litres) for both ores and pure metal outputs.
+
+A separate programming board will be used for ores and pures.  
+
+You must establish a link from each container and each screen to the respective programming board. 
+
+The links must be named as follows:
+
+Ore Board:
+
+Coal Container & Screen: container1/screen1
+Hematite: container2/screen2
+Bauxite: container3/screen3
+Quartz: container4/screen4
+
+Pure Board:
+
+Carbon: container1/screen1
+Iron: container2/screen2
+Aluminium: container3/screen3
+Silicon: container4/screen4
+
+NOTE: The container data that DU provides is very limited.  You will need to edit both the ore display and the pure display and update the cont<#>maxvolume  (ie cont1maxvolume) variables to match the maximum volume you can store  in each container or container hub.
+
+These scripts also assume that you only have these items by themselves in each container.  Things like oxygen/hydrogen will skew the liter counts.
+
+The detection zone should be placed so that it's detection sphere covers the area in front of the signs, such that when a player walks up, the signs will activate.
+
+The detection zone must be linked to the relay.  The relay then links to both programming boards.
