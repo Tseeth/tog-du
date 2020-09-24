@@ -1,0 +1,16 @@
+This is an autoconfigure file and must be placed in your custom autoconf folder that should look something like this:
+
+C:\ProgramData\Dual Universe\Game\data\lua\autoconf\custom
+
+The AutoPilot is configured on a REMOTE CONTROLLER.
+
+Once you've copied in the autoconfigure file, right click the remote controller and select 'Advanced > Update custom autoconf list' once so Dual Universe recognizes the new file.  
+Next, right click, select 'Advanced > Run custom autoconfigure > Basic Space Autopilot'.
+
+You cannot be operating your pilot seat when the remote controller is active and vice-versa.
+
+Currently, the AutoPilot is SPACE ONLY and requires downward facing engines to help correct drift.   It lacks collision detection.  
+
+It's recommended you already be on a general heading towards your destination before engaging autopilot.
+
+This version of the autoconfigure includes the coordinates for the TOG Space Base.
