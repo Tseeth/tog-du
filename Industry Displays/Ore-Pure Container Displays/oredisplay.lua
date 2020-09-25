@@ -29,16 +29,16 @@ xGui.__index = xGui;
 
 function xGui.new()
     local self = setmetatable({}, xGui)
-    self.areas = {}
+    areas = {}
     return self
 end
 
-function xGui.createClickableArea(self, id, x, y, hx, hy, fun)
-	self.areas[id] = xClickableArea.new(x, y, hx, hy, fun)
+function xGui.createClickableArea(id, x, y, hx, hy, fun)
+	areas[id] = xClickableArea.new(x, y, hx, hy, fun)
 end
 
 function xGui.deleteClickableArea(self, id)
-	table.remove(self.areas, id)
+	table.remove(areas, id)
 end
 
 function xGui.createButtonArea(self, screen, x, y, hx, hy, bgcolor, color, text, fun)
@@ -91,9 +91,6 @@ screen4.activate()
 
 
 unit.setTimer("update",1)
-
-
--- Deploy To: unit.tick(update)
 
 screen1label = 'Coal'
 screen2label = 'Hematite'
@@ -171,6 +168,66 @@ screen3label3 = ui:createTextArea(screen3,0,.50,1,.25,'#000000','#FFFFFF',cont3v
 screen4label1 = ui:createTextArea(screen4,0,.25,.5,.25,'#FFFFFF','#000000',screen4label)
 screen4label2 = ui:createTextArea(screen4,.5,.25,.5,.25,'#000000',screen4label2color,cont4percentage .. '%')
 screen4label3 = ui:createTextArea(screen4,0,.50,1,.25,'#000000','#FFFFFF',cont4volume .. 'L')
+
+
+-- Deploy To: unit.tick(update)
+
+cont1mass = utils.round(container1.getItemsMass(),.1)
+cont1volume = utils.round(cont1mass / cont1massperitem,.1)
+cont1percentage = utils.round((cont1volume / cont1maxvolume)*100,.1)
+cont2mass = utils.round(container2.getItemsMass(),.1)
+cont2volume = utils.round(cont2mass / cont2massperitem,.1)
+cont2percentage = utils.round((cont2volume / cont2maxvolume)*100,.1)
+cont3mass = utils.round(container3.getItemsMass(),.1)
+cont3volume = utils.round(cont3mass / cont3massperitem,.1)
+cont3percentage = utils.round((cont3volume / cont3maxvolume)*100,.1)
+cont4mass = utils.round(container4.getItemsMass(),.1)
+cont4volume = utils.round(cont4mass / cont4massperitem,.1)
+cont4percentage = utils.round((cont4volume / cont4maxvolume)*100,.1)
+
+if cont1percentage >= 75 then
+    screen1label2color = "#008000"
+    elseif cont1percentage >= 25 then
+    screen1label2color = "#FFFF00"
+    else
+    screen1label2color = "#FF0000"
+end
+
+if cont2percentage >= 75 then
+    screen2label2color = "#008000"
+    elseif cont2percentage >= 25 then
+    screen2label2color = "#FFFF00"
+    else
+    screen2label2color = "#FF0000"
+end
+
+if cont3percentage >= 75 then
+    screen3label2color = "#008000"
+    elseif cont3percentage >= 25 then
+    screen3label2color = "#FFFF00"
+    else
+    screen3label2color = "#FF0000"
+end
+
+if cont4percentage >= 75 then
+    screen4label2color = "#008000"
+    elseif cont4percentage >= 25 then
+    screen4label2color = "#FFFF00"
+    else
+    screen4label2color = "#FF0000"
+end
+
+ui:updateTextArea(screen1,screen1label2,.5,.25,.5,.25,'#000000',screen1label2color,cont1percentage .. '%')
+ui:updateTextArea(screen1,screen1label3,0,.50,1,.25,'#000000','#FFFFFF',cont1volume .. 'L')
+
+ui:updateTextArea(screen2,screen2label2,.5,.25,.5,.25,'#000000',screen2label2color,cont2percentage .. '%')
+ui:updateTextArea(screen2,screen2label3,0,.50,1,.25,'#000000','#FFFFFF',cont2volume .. 'L')
+
+ui:updateTextArea(screen3,screen3label2,.5,.25,.5,.25,'#000000',screen3label2color,cont3percentage .. '%')
+ui:updateTextArea(screen3,screen3label3,0,.50,1,.25,'#000000','#FFFFFF',cont3volume .. 'L')
+
+ui:updateTextArea(screen4,screen4label2,.5,.25,.5,.25,'#000000',screen4label2color,cont4percentage .. '%')
+ui:updateTextArea(screen4,screen4label3,0,.50,1,.25,'#000000','#FFFFFF',cont4volume .. 'L')
 
 -- Deploy To: unit.stop()
 
